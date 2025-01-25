@@ -1,17 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 
 # Load the trained SVM model, scaler, and label encoder
-with open('svm_model.pkl', 'rb') as model_file:
-    svm_model = pickle.load(model_file)
-
-with open('scaler.pkl', 'rb') as scaler_file:
-    scaler = pickle.load(scaler_file)
-
-with open('label_encoder.pkl', 'rb') as encoder_file:
-    label_encoder = pickle.load(encoder_file)
+svm_model = joblib.load('svm_model.pkl')
+scaler = joblib.load('scaler.pkl')
+label_encoder = joblib.load('label_encoder.pkl')
 
 # Streamlit App
 st.set_page_config(
@@ -73,6 +68,7 @@ if st.button("Predict 🔍"):
             "❌ **The model predicts:** Not Purchased 👎", icon="❌"
         )
 
+# Footer
 st.markdown(
     """
     <hr style="border: 1px solid #f0f0f0;">
